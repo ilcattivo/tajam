@@ -1,0 +1,538 @@
+@import variables
+
+@function randomGrey()
+  $min: 120
+  $max: 230
+  $rand: random()
+  @return $min + floor($rand * (($max - $min) + 1))
+
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+body
+  background-color: #fff
+
+a
+  text-decoration: none
+
+ul, ol
+  list-style: none
+
+html
+  font-family: Roboto, "Myriad Pro", sans-serif
+
+.container
+  width: 940px
+  margin: 0 auto
+
+.logo
+  width: 128px
+
+.header
+  background: url('../img/backgrounds/bg_header.jpg') center / cover no-repeat $violet
+
+.nav
+  display: flex
+  justify-content: space-between
+  &__logo
+    margin-top: 15px
+  &__list
+    margin-top: 35px
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+  &__item
+    margin-right: 25px
+  &__item:last-child
+    margin-right: 0
+  &__link
+    +caption
+    font-size: 13px
+    &:hover
+      color: $light-blue
+      
+.promo
+  &__slider
+    margin-top: 155px
+
+.promo-slider
+  &__header
+    margin-top: 0
+    margin-bottom: 20px
+    font-size: 32px
+    color: #ffffff
+    text-align: center
+    font-family: 'Playfair Display', "Myriad Pro", serif
+    letter-spacing: 0.32px
+  &__divider
+    margin: 0 auto 25px
+  &__descr
+    +text
+    margin: 0 auto 50px
+    text-align: center
+    line-height: 24px
+    max-width: 780px
+    letter-spacing: 0.7px
+  &__button
+    margin: 0 auto 127px
+  &__indicators
+    display: inline-flex
+    margin-left: 50%
+    margin-bottom: 70px
+    transform: translateX(-50%)
+  &__indicator
+    border: 1px solid #c2c2c2
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    cursor: pointer
+  &__indicator:not(:last-child)
+    margin-right: 5px
+  &__indicator.active
+    border: none
+    background-color: $light-blue
+
+.divider
+  width: 50px
+  height: 1px
+  background-color: $light-blue
+
+.button
+  display: table
+  font-size: 16px
+  padding: 15px
+  border: 1px solid $light-blue
+  background: transparent
+  cursor: pointer
+  color: $light-blue
+  text-transform: uppercase
+  font-family: "Hammersmith One"
+  text-decoration: none
+  &:hover
+    border-color: #46a3cc
+    background: #46a3cc
+    color: #fff
+
+.about
+  &__wrapper
+    display: flex
+    justify-content: space-between
+  &__left
+    flex-grow: 1
+    background: url('../icons/tajam_arrow.png') center 70px / 235px 229px no-repeat
+  &__right
+    flex-basis: 540px
+  &__header
+    +header($dark-grey)
+    margin-top: 70px
+    margin-bottom: 25px
+  &__descr
+    +text($dark-grey)
+    opacity: 0.75
+    line-height: 22px
+    letter-spacing: 0.42px
+    margin-bottom: 30px
+  &__button
+    margin-bottom: 70px
+
+.video
+  position: relative
+  background: url('../img/backgrounds/bg_video.jpg') center / cover no-repeat $violet
+  &__play
+    position: absolute
+    background: url('../icons/play.svg') center / cover no-repeat
+    width: 100px
+    height: 100px
+    top: 202px
+    left: 50%
+    margin-left: -50px
+    cursor: pointer
+    border: none
+  &__label
+    +caption
+    position: absolute
+    top: 336px
+    left: 50%
+    transform: translateX(-50%)
+    font-size: 16px
+
+.expertise
+  &__header
+    +header($dark-grey)
+    margin-top: 70px
+    margin-bottom: 15px
+    text-align: center
+  &__subheader
+    font-family: "Playfair Display"
+    color: #2f2d35
+    opacity: 0.75
+    font-size: 14px
+    font-weight: 400
+    letter-spacing: 1.05px
+    margin-bottom: 18px
+    text-align: center
+  &__divider
+    margin-bottom: 48px
+    height: 2px
+    background-color: $dark-grey
+    opacity: 0.3
+    margin-left: auto
+    margin-right: auto
+  &__row
+    display: flex
+    justify-content: space-between
+  &__row:not(:last-child)
+    border-bottom: 1px solid #ebebeb
+  &__card:not(:last-child)
+    border-right: 1px solid #ebebeb
+  &__cards
+    margin-bottom: 68px
+
+.card
+  padding: 40px 22px
+  padding-top: 0
+  &__header
+    @include caption($dark-grey)
+    margin-top: 115px
+    margin-bottom: 25px
+    letter-spacing: 0.7px
+    font-size: 14px
+    text-align: center
+  &__descr
+    +text(#333333)
+    line-height: 22px
+    letter-spacing: 0.7px
+    text-align: center
+
+@for $i from 1 through 6
+  .card-#{$i}
+    background: url('../img/expertise/expertise_#{$i}.png') center 32px no-repeat
+
+.team
+  background: url(../img/backgrounds/bg_team.jpg) center / cover no-repeat $violet
+  padding-bottom: 69px
+  &__header
+    +header
+    padding-top: 70px
+    margin-bottom: 15px
+    text-align: center
+  &__subheader
+    color: #f9f9f9
+    font-family: "Playfair Display"
+    font-size: 14px
+    font-weight: 400
+    letter-spacing: 1.05px
+    margin-bottom: 18px
+    text-align: center
+  &__divider
+    background-color: #ffffff
+    opacity: 0.2
+    height: 2px
+    margin-bottom: 47px
+    margin-left: auto
+    margin-right: auto
+  &__list
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+  &__descr
+    +text(#f3f3f3)
+    letter-spacing: 0.7px
+    text-align: center
+    margin-top: 70px
+    margin-bottom: 25px
+
+  &__button
+    display: table
+    margin: 0 auto
+
+.person-card
+  &__img
+    display: block
+    width: 220px
+    height: 229px
+  &__info
+    border: 1px solid rgba(225, 225, 225, 0.5)
+    border-top: none
+  &__name
+    +caption
+    font-size: 14px
+    letter-spacing: 0.7px
+    text-align: center
+    padding-top: 23px
+    margin-bottom: 12px
+  &__position
+    +caption
+    color: #fafafa
+    font-weight: 300
+    opacity: 0.7
+    font-size: 13px
+    text-align: center
+    margin-bottom: 25px
+
+.works
+  &__header
+    display: flex
+    justify-content: space-between
+    padding: 70px 0
+  &__title
+    +header($dark-grey)
+  &__link
+    +text(#413d4b)
+    padding-right: 15px
+    position: relative
+    &:hover
+      text-decoration: underline
+    &::after
+      position: absolute
+      top: 1px
+      right: 0
+      content: ''
+      background: url('../icons/right_arrow.png') center / cover no-repeat
+      width: 8px
+      height: 13px
+  &__list
+    display: grid
+    grid-template-columns: repeat(6, 1fr)
+    list-style: none
+  &__work
+    display: block
+    min-height: 200px
+  &__item
+    @for $i from 1 through 12
+      &:nth-child(#{$i})
+        a
+          // temporary plug
+          $random: randomGrey()
+          background-color: rgb($random, $random, $random)
+  &__button
+    margin: 69px auto
+    padding-left: 28px
+    padding-right: 28px
+
+.testimonials
+  position: relative
+  padding-top: 137px
+  padding-bottom: 68px
+  background: url('../img/backgrounds/bg_testimonials.jpg') center / cover no-repeat $violet
+  &::before
+    content: "“"
+    position: absolute
+    top: 69px
+    left: 50%
+    transform: translateX(-50%)
+    color: #ffffff
+    opacity: 0.9
+    font-family: "Playfair Display"
+    font-weight: 400
+    font-size: 100px
+    line-height: 65px
+
+.review-slider
+  position: relative
+  &__inner
+    width: 770px
+    margin-left: auto
+    margin-right: auto
+  &__descr
+    margin-bottom: 52px
+    opacity: 0.85
+    color: #ffffff
+    font-family: "Playfair Display"
+    font-size: 16px
+    font-weight: 400
+    line-height: 26px
+    letter-spacing: 0.4px
+    text-align: center
+  &__name
+    +caption
+    font-size: 14px
+    margin-bottom: 13px
+    letter-spacing: 0.7px
+    text-align: center
+  &__position
+    padding-bottom: 110px
+    color: #ffffff
+    font-family: $roboto
+    font-size: 13px
+    text-align: center
+  &__control
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    justify-content: center
+    align-items: center
+  &__prev, &__next
+    width: 11px 
+    height: 21px
+    background: center / cover no-repeat
+    filter: invert(75%)
+    border: none
+    cursor: pointer
+  &__prev
+    background-image: url('../icons/slider_prev.png')
+  &__next
+    background-image: url('../icons/slider_next.png')
+  &__indicators
+    display: flex
+    align-items: center
+    list-style: none
+    margin-left: 30px
+    margin-right: 30px
+  &__indicator:not(:last-child)
+    margin-right: 14px
+    width: 45px
+    height: 45px
+    &.active
+      width: 70px
+      height: 70px
+  &__icon
+    display: block
+    background: none
+    border: none
+    border-radius: 50%
+    width: 100%
+    height: 100%
+
+.contact
+  padding-top: 72px
+  padding-bottom: 85px
+  &__wrapper
+    display: flex
+    justify-content: space-between
+  &__left
+    margin-right: 100px
+  &__form
+    width: 460px
+  &__header
+    +header($dark-grey)
+    letter-spacing: 1.1px
+    margin-bottom: 35px
+  &__input
+    display: block
+    margin-bottom: 23px
+  &__button
+    padding-left: 32px
+    padding-right: 32px
+
+.form-input, .form-area
+  border: 1px solid rgba(0, 0, 0, .1)
+  width: 100%
+  padding-left: 21px
+  &::placeholder
+    +text($dark-grey)
+    opacity: 0.5
+    letter-spacing: 0.7px
+
+
+.form-input
+  height: 45px
+
+.form-area
+  padding-top: 21px
+  height: 200px
+
+.clients
+  width: 380px
+  display: grid
+  grid-template-columns: 1fr 1fr
+  &__item
+    margin-bottom: 50px
+    img
+      display: block
+      margin-left: auto
+      margin-right: auto
+      max-width: 100%
+
+.footer
+  background: url('../img/backgrounds/bg_footer.jpg') center / cover no-repeat $violet
+  padding-top: 70px
+  padding-bottom: 70px
+  &__top
+    display: flex
+    justify-content: space-between
+    padding-bottom: 71px
+  &__left
+    width: 285px
+  &__center
+    width: 270px
+  &__right
+    width: 291px
+  &__logo
+    margin-bottom: 27px
+  &__descr
+    +text
+    line-height: 26px
+    letter-spacing: 0.35px
+  &__caption
+    +caption
+    font-size: 15px
+    letter-spacing: 0.75px
+    margin-bottom: 39px
+  &__icon
+    position: absolute
+    top: 3px
+    left: 0
+    font-size: 19px
+  &__address, &__tel-wrapper
+    +text
+    position: relative
+    padding-left: 30px
+    font-style: normal
+    line-height: 26px
+    letter-spacing: 0.35px
+  &__tel
+    +text
+  &__form
+    display: flex
+    justify-content: space-between
+    margin-bottom: 27px
+  &__input
+    background-color: transparent
+    border: 1px solid rgba(255, 255, 255, .5)
+    margin-right: 10px
+    color: #ffffff
+    &::placeholder
+      color: #ffffff
+      opacity: 0.75
+  &__submit
+    width: 70px
+    height: 45px
+    border: none
+    background: url('../icons/paper.png') center / 25px 25px no-repeat rgba(255, 255, 255, .5)
+  &__social-links
+    display: flex
+    .social-link:not(:last-child)
+      margin-right: 8px
+  &__bottom
+    display: flex
+    justify-content: space-between
+  &__copyright
+    +text
+
+.social-link
+  display: block
+  width: 35px
+  height: 35px
+  border: 1px solid #ffffff
+  border-radius: 50%
+  line-height: 35px
+  text-align: center
+
+.footer-nav
+  &__list
+    display: flex
+  &__item
+    margin-right: 35px
+  &__link
+    +text
+    letter-spacing: 0.35px
+    text-transform: uppercase
+
+    
+  
