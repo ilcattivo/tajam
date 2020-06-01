@@ -6,11 +6,13 @@
   $rand: random()
   @return $min + floor($rand * (($max - $min) + 1))
 
-
 *
   margin: 0
   padding: 0
   box-sizing: border-box
+
+html
+  scroll-behavior: smooth
 
 body
   background-color: #fff
@@ -27,15 +29,39 @@ html
 .container
   width: 940px
   margin: 0 auto
+  @media screen and ( max-width: 1180px )
+    width: auto
+    max-width: 940px
+    padding-left: 20px
+    padding-right: 20px
 
 .logo
   width: 128px
+  @media screen and ( max-width: $lg )
+    width: 80px
+  @media screen and ( max-width: $md )
+    width: 110px
+
+.hamburger
+  position: absolute
+  top: 20px
+  right: 30px
+  width: 32px
+  height: 32px
+  border: none
+  cursor: pointer
+  display: none
+  filter: invert(100%)
+  background: url('../icons/hamburger.svg') center / cover no-repeat
+  @media screen and ( max-width: $md )
+    display: block
 
 .header
   background: url('../img/backgrounds/bg_header.jpg') center / cover no-repeat $violet
 
 .nav
   display: flex
+  flex-wrap: wrap
   justify-content: space-between
   &__logo
     margin-top: 15px
@@ -53,7 +79,35 @@ html
     font-size: 13px
     &:hover
       color: $light-blue
-      
+
+@media screen and ( max-width: $lg )
+  .nav
+    &__logo
+      margin-top: 15px
+    &__list
+      margin-top: 25px
+    &__link
+      font-size: 12px
+  
+@media screen and ( max-width: $md )
+  .nav
+    &__logo
+      margin-top: 15px
+    &__list
+      margin-top: 25px
+      display: none
+      flex-direction: column
+      width: 100%
+      &.active
+        display: block
+    &__item
+      margin-right: 0
+    &__link
+      display: block
+      margin: 30px auto
+      text-align: center
+      font-size: 15px
+
 .promo
   &__slider
     margin-top: 155px
@@ -77,9 +131,10 @@ html
     max-width: 780px
     letter-spacing: 0.7px
   &__button
-    margin: 0 auto 127px
+    margin: 0 auto
   &__indicators
     display: inline-flex
+    margin-top: 127px
     margin-left: 50%
     margin-bottom: 70px
     transform: translateX(-50%)
@@ -94,6 +149,21 @@ html
   &__indicator.active
     border: none
     background-color: $light-blue
+
+@media screen and ( max-width: $lg )
+  .promo__slider
+    margin-top: 110px
+  .promo-slider
+    &__header
+      font-size: 28px
+    &__indicators
+      margin-top: 70px
+    &__indicator
+      width: 30px
+      height: 12px
+      border-radius: 25% / 50%
+    &__indicator:not(:last-child)
+      margin-right: 10px
 
 .divider
   width: 50px
@@ -116,18 +186,24 @@ html
     background: #46a3cc
     color: #fff
 
+@media screen and ( max-width: $lg )
+  .button
+    padding: 10px
+    font-size: 13px
+
 .about
+  padding-top: 70px
+  padding-bottom: 70px
   &__wrapper
     display: flex
     justify-content: space-between
   &__left
     flex-grow: 1
-    background: url('../icons/tajam_arrow.png') center 70px / 235px 229px no-repeat
+    background: url('../icons/tajam_arrow.png') center top / 235px 229px no-repeat
   &__right
     flex-basis: 540px
   &__header
     +header($dark-grey)
-    margin-top: 70px
     margin-bottom: 25px
   &__descr
     +text($dark-grey)
@@ -135,20 +211,51 @@ html
     line-height: 22px
     letter-spacing: 0.42px
     margin-bottom: 30px
-  &__button
-    margin-bottom: 70px
+
+@media screen and ( max-width: $lg )
+  .about
+    &__left
+      background-size: 75%
+    &__right
+      flex-basis: 70%
+    &__header
+      margin-bottom: 15px
+    &__descr
+      margin-bottom: 20px
+
+@media screen and ( max-width: $md )
+  .about
+    padding: 40px
+    &__left
+      display: none
+    &__right
+      flex-basis: 100%
+    &__header
+      position: relative
+      display: inline-block
+      &::after
+        content: ''
+        position: absolute
+        top: -7px
+        right: -45px
+        width: 32px
+        height: 32px
+        background: url('../icons/tajam_arrow.png') center / 100% no-repeat
 
 .video
   position: relative
   background: url('../img/backgrounds/bg_video.jpg') center / cover no-repeat $violet
+  height: 550px
+  &__video
+    max-width: 100%
   &__play
     position: absolute
     background: url('../icons/play.svg') center / cover no-repeat
     width: 100px
     height: 100px
-    top: 202px
+    top: 50%
     left: 50%
-    margin-left: -50px
+    transform: translate(-50%, -50%)
     cursor: pointer
     border: none
   &__label
@@ -158,6 +265,26 @@ html
     left: 50%
     transform: translateX(-50%)
     font-size: 16px
+
+@media screen and ( max-width: $md )
+  .video
+    height: 400px
+    &__play
+      width: 70px
+      height: 70px
+    &__label
+      top: 260px
+      font-size: 14px
+
+@media screen and ( max-width: $sm )
+  .video
+    height: 300px
+    &__play
+      width: 50px
+      height: 50px
+    &__label
+      top: 190px
+      font-size: 12px
 
 .expertise
   &__header
@@ -181,15 +308,28 @@ html
     opacity: 0.3
     margin-left: auto
     margin-right: auto
-  &__row
-    display: flex
-    justify-content: space-between
-  &__row:not(:last-child)
+  &__cards
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+  &__card:nth-child(-n + 3)
     border-bottom: 1px solid #ebebeb
-  &__card:not(:last-child)
+  &__card:not(:nth-child(3n))
     border-right: 1px solid #ebebeb
   &__cards
     margin-bottom: 68px
+
+@media screen and ( max-width: $md )
+  .expertise
+    &__cards
+      grid-template-columns: 1fr 1fr
+    &__card:nth-child(-n + 3)
+      border-bottom: none
+    &__card:not(:nth-child(3n))
+      border-right: none
+    &__card:nth-child(-n + 4)
+      border-bottom: 1px solid #ebebeb
+    &__card:not(:nth-child(2n))
+      border-right: 1px solid #ebebeb
 
 .card
   padding: 40px 22px
@@ -237,14 +377,20 @@ html
   &__list
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: center
+  &__item
+    margin-bottom: 15px
+  &__item
+    margin-right: 15px
+  &__person-card
+    width: 220px
+    margin: 0 auto
   &__descr
     +text(#f3f3f3)
     letter-spacing: 0.7px
     text-align: center
     margin-top: 70px
     margin-bottom: 25px
-
   &__button
     display: table
     margin: 0 auto
@@ -252,7 +398,7 @@ html
 .person-card
   &__img
     display: block
-    width: 220px
+    width: 100%
     height: 229px
   &__info
     border: 1px solid rgba(225, 225, 225, 0.5)
@@ -272,6 +418,12 @@ html
     font-size: 13px
     text-align: center
     margin-bottom: 25px
+
+@media screen and ( max-width: $lg )
+  .team
+    padding-bottom: 35px
+    &__descr
+      margin-top: 25px
 
 .works
   &__header
@@ -295,12 +447,15 @@ html
       width: 8px
       height: 13px
   &__list
-    display: grid
-    grid-template-columns: repeat(6, 1fr)
+    display: flex
+    flex-wrap: wrap
     list-style: none
+  &__item
+    flex-grow: 1
+    flex-basis: 200px
   &__work
-    display: block
     min-height: 200px
+    display: block
   &__item
     @for $i from 1 through 12
       &:nth-child(#{$i})
@@ -312,6 +467,23 @@ html
     margin: 69px auto
     padding-left: 28px
     padding-right: 28px
+
+@media screen and ( max-width: $lg )
+  .works
+    &__header
+      padding: 40px 0
+    &__link
+      font-size: 16px
+    &__button
+      margin: 40px auto
+
+@media screen and ( max-width: $sm )
+  .works
+    &__list
+      display: none
+    &__button
+      margin: 15px auto
+      margin-top: 0
 
 .testimonials
   position: relative
@@ -330,13 +502,19 @@ html
     font-weight: 400
     font-size: 100px
     line-height: 65px
+    @media screen and ( max-width: $sm )
+      top: 30px
+      font-size: 50px
+      line-height: 40px
 
 .review-slider
   position: relative
   &__inner
-    width: 770px
+    max-width: 810px
     margin-left: auto
     margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
   &__descr
     margin-bottom: 52px
     opacity: 0.85
@@ -384,13 +562,14 @@ html
     list-style: none
     margin-left: 30px
     margin-right: 30px
-  &__indicator:not(:last-child)
-    margin-right: 14px
+  &__indicator
     width: 45px
     height: 45px
     &.active
       width: 70px
       height: 70px
+  &__indicator:not(:last-child)
+    margin-right: 14px
   &__icon
     display: block
     background: none
@@ -399,16 +578,35 @@ html
     width: 100%
     height: 100%
 
+@media screen and ( max-width: $sm )
+  .testimonials
+    padding-top: 60px
+  .review-slider
+    &__descr
+      font-size: 13px
+      margin-bottom: 30px
+    &__position
+      padding-bottom: 80px
+    &__indicator
+      width: 30px
+      height: 30px
+      &.active
+        width: 45px
+        height: 45px
+    &__indicator:not(:last-child)
+      margin-right: 9px
+
 .contact
   padding-top: 72px
   padding-bottom: 85px
   &__wrapper
     display: flex
+    flex-wrap: wrap
     justify-content: space-between
   &__left
-    margin-right: 100px
-  &__form
-    width: 460px
+    flex-grow: 1
+    max-width: 460px
+    margin-right: 20px
   &__header
     +header($dark-grey)
     letter-spacing: 1.1px
@@ -438,7 +636,8 @@ html
   height: 200px
 
 .clients
-  width: 380px
+  flex-grow: 1
+  max-width: 380px
   display: grid
   grid-template-columns: 1fr 1fr
   &__item
@@ -449,6 +648,16 @@ html
       margin-right: auto
       max-width: 100%
 
+@media screen and ( max-width: $md )
+  .contact
+    padding: 40px
+    &__left, &__right
+      flex-basis: 100%
+      max-width: 100%
+      padding: 0 30px
+    &__right
+      margin-top: 30px
+
 .footer
   background: url('../img/backgrounds/bg_footer.jpg') center / cover no-repeat $violet
   padding-top: 70px
@@ -458,11 +667,13 @@ html
     justify-content: space-between
     padding-bottom: 71px
   &__left
-    width: 285px
+    flex-basis: 285px
+    margin-right: 20px
   &__center
-    width: 270px
+    flex-basis: 270px
+    margin-right: 20px
   &__right
-    width: 291px
+    flex-basis: 291px
   &__logo
     margin-bottom: 27px
   &__descr
@@ -501,6 +712,7 @@ html
       color: #ffffff
       opacity: 0.75
   &__submit
+    flex-shrink: 0
     width: 70px
     height: 45px
     border: none
@@ -511,9 +723,11 @@ html
       margin-right: 8px
   &__bottom
     display: flex
+    flex-wrap: wrap
     justify-content: space-between
   &__copyright
     +text
+
 
 .social-link
   display: block
@@ -534,5 +748,48 @@ html
     letter-spacing: 0.35px
     text-transform: uppercase
 
+@media screen and ( max-width: $lg )
+  .footer
+    padding-top: 40px
+    padding-bottom: 40px
+    &__top
+      flex-wrap: wrap
+      max-width: 650px
+      margin-left: auto
+      margin-right: auto
+    &__left
+      flex-basis: 100%
+      margin-bottom: 20px
+      margin-right: 0
+    &__logo
+      margin-bottom: 5px
+    &__caption
+      margin-bottom: 15px
+      font-size: 14px
     
+@media screen and ( max-width: $md )
+  .footer
+    &__left
+      flex-basis: 200px
+      flex-grow: 1
+      margin-right: 25px
+    &__center
+      flex-basis: 180px
+      flex-grow: 1
+    &__right
+      flex-basis: 100%
+  .footer-nav
+    &__item
+      margin-right: 17px
   
+@media screen and ( max-width: $sm )
+  .footer
+    &__center
+      margin-bottom: 20px
+    &__bottom
+      justify-content: center !important
+    &__copyright
+      margin-top: 10px
+      flex-basis: 100%
+      text-align: center
+      
