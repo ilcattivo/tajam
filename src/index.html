@@ -8,9 +8,9 @@
       href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@300;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/normalize.min.css" />
-    <link rel="stylesheet" href="./css/icons.css" />
-    <link rel="stylesheet" href="./css/style.min.css" />
+    <link rel="stylesheet" href="css/normalize.min.css" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
   <body>
     <section class="promo">
@@ -498,5 +498,27 @@
         </div>
       </div>
     </footer>
+
+    <div class="chat" id="chat">
+      <h2 class="chat__header">Message us</h2>
+      <div class="chat__inner">
+        <div id="messages" class="chat__messages"></div>
+        <form id="chat-form" class="chat__form">
+          <input
+            id="chat-input"
+            type="text"
+            class="chat__input form-input"
+            placeholder="Write your message"
+          />
+          <button class="chat__submit"></button>
+        </form>
+      </div>
+      <button class="chat__close" id="chat-close"></button>
+    </div>
+
+    <button class="message-us active" id="message-us"></button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
   </body>
 </html>

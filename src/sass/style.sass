@@ -793,3 +793,71 @@ html
       flex-basis: 100%
       text-align: center
       
+.chat
+  position: fixed
+  bottom: -500px
+  right: 50px
+  background-color: #48474e
+  border-radius: 10px 10px 0 0
+  transition: bottom 0.5s
+  &.active
+    bottom: 0
+  &__header
+    +text
+    margin: 20px 10px
+    font-size: 16px
+  &__inner
+    background-color: #fff
+    display: flex
+    flex-direction: column
+  &__messages
+    height: 350px
+    overflow: auto
+    padding: 10px
+  &__message
+    +text(black)
+    max-width: 60%
+    background-color: #d4d4d4
+    padding: 10px
+    border-radius: 10px
+    margin-bottom: 8px
+  &__form
+    bottom: 40px
+    width: 100%
+    display: flex
+  &__input
+    flex-grow: 1
+    border-left: none
+    border-right: none
+  &__submit
+    width: 40px
+    height: 40px
+    flex-shrink: 0
+    align-self: center
+    background: url('../icons/paper.png') center / 21px no-repeat #899589
+    filter: invert(100%)
+    border: none
+    border-radius: 15%
+    margin-right: 15px
+    margin-left: 15px
+  &__close
+    position: absolute
+    background: #ffffff
+    width: 20px
+    height: 6px
+    top: 20px
+    right: 20px
+    cursor: pointer
+  
+.message-us
+  position: fixed
+  bottom: -50px
+  right: 50px
+  width: 60px
+  height: 35px
+  border: none
+  border-radius: 10px
+  background: url('../icons/chat.svg') center / 25px no-repeat #899589
+  transition: bottom 0.2s
+  &.active
+    bottom: 20px
