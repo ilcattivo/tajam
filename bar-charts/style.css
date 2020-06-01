@@ -1,0 +1,28 @@
+.bar-chart {
+  position: relative;
+  list-style: none;
+  margin-top: 100px;
+  margin-left: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar {
+  position: relative;
+}
+
+.bar span {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scale {
+  position: absolute;
+  bottom: -9px;
+  left: -20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
